@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\AboutController;
 use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\Backend\AdminReviewController;
 use App\Http\Controllers\Backend\AdminVendorProfileController;
@@ -30,7 +31,10 @@ use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\StripeSettingController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\SubscriberController;
+use App\Http\Controllers\Backend\TermsAndConditionController;
 use App\Http\Controllers\Backend\TransactionController;
+use App\Http\Controllers\Backend\VendorConditionController;
+use App\Http\Controllers\Backend\VendorController;
 use App\Http\Controllers\Backend\VendorListController;
 use App\Http\Controllers\Backend\VendorRequestController;
 use App\Http\Controllers\ProductVariantController;
@@ -173,6 +177,18 @@ Route::put('customers/change-status', [CustomerListController::class, 'changeSta
 /** Vendor List Routes **/
 Route::get('vendors', [VendorListController::class, 'index'])->name('vendors.index');
 Route::put('vendors/change-status', [VendorListController::class, 'changeStatus'])->name('vendors.change-status');
+
+/** Vendor condition Routes **/
+Route::get('vendors-condition', [VendorConditionController::class, 'index'])->name('vendors-condition.index');
+Route::put('vendors-condition/update', [VendorConditionController::class, 'update'])->name('vendors-condition.update');
+
+/** About Routes **/
+Route::get('about', [AboutController::class, 'index'])->name('about.index');
+Route::put('about/update', [AboutController::class, 'update'])->name('about.update');
+
+/** Terms & Condition Routes **/
+Route::get('terms-conditions', [TermsAndConditionController::class, 'index'])->name('terms-conditions.index');
+Route::put('terms-conditions/update', [TermsAndConditionController::class, 'update'])->name('terms-conditions.update');
 
 /** Footer Routes **/
 Route::put('footer-socials/change-status', [FooterSocialController::class, 'changeStatus'])->name('footer-socials.change-status');

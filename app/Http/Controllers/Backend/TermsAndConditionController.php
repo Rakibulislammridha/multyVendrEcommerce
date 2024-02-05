@@ -3,15 +3,15 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Models\VendorCondition;
+use App\Models\TermsAndCondition;
 use Illuminate\Http\Request;
 
-class VendorConditionController extends Controller
+class TermsAndConditionController extends Controller
 {
     public function index()
     {
-        $content = VendorCondition::first();
-        return view('admin.vendor-condition.index', compact('content'));
+        $content = TermsAndCondition::first();
+        return view('admin.terms-and-conditions.index', compact('content'));
     }
 
     public function update(Request $request)
@@ -20,14 +20,14 @@ class VendorConditionController extends Controller
             'content' => ['required']
         ]);
 
-        VendorCondition::updateOrCreate(
+        TermsAndCondition::updateOrCreate(
             ['id' => 1],
             [
                 'content' => $request->content
             ]
         );
 
-        toastr('Condition Updated Successfully!!', 'success', 'Success');
+        toastr('About Updated Successfully!!', 'success', 'Success');
         return redirect()->back();
     }
 }

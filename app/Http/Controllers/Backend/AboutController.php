@@ -3,15 +3,15 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Models\VendorCondition;
+use App\Models\About;
 use Illuminate\Http\Request;
 
-class VendorConditionController extends Controller
+class AboutController extends Controller
 {
     public function index()
     {
-        $content = VendorCondition::first();
-        return view('admin.vendor-condition.index', compact('content'));
+        $content = About::first();
+        return view('admin.about.index', compact('content'));
     }
 
     public function update(Request $request)
@@ -20,14 +20,14 @@ class VendorConditionController extends Controller
             'content' => ['required']
         ]);
 
-        VendorCondition::updateOrCreate(
+        About::updateOrCreate(
             ['id' => 1],
             [
                 'content' => $request->content
             ]
         );
 
-        toastr('Condition Updated Successfully!!', 'success', 'Success');
+        toastr('About Updated Successfully!!', 'success', 'Success');
         return redirect()->back();
     }
 }

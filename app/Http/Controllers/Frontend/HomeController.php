@@ -54,7 +54,6 @@ class HomeController extends Controller
             'categorySliderSectionOne',
             'categorySliderSectionTwo',
             'categorySliderSectionThree',
-            
             'home_page_banner_section_one',
             'home_page_banner_section_two',
             'home_page_banner_section_three',
