@@ -76,8 +76,12 @@ Route::get('vendor-products/{id}', [HomeController::class, 'vendorProductsPage']
 /** About Page Routes **/
 Route::get('about', [PageController::class, 'about'])->name('about');
 
-/** About Page Routes **/
+/** Terms And Conditions Routes **/
 Route::get('terms-and-conditions', [PageController::class, 'termsAndConditions'])->name('terms-and-conditions');
+
+/** Contact Routes **/
+Route::get('contact', [PageController::class, 'contact'])->name('contact');
+Route::post('contact', [PageController::class, 'handleContactForm'])->name('handle-contact-form');
 
 /** Authenticated routes **/
 Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 'user.'], function(){
