@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Backend\AboutController;
 use App\Http\Controllers\Backend\AdminController;
+use App\Http\Controllers\Backend\AdminListController;
 use App\Http\Controllers\Backend\AdminReviewController;
 use App\Http\Controllers\Backend\AdminVendorProfileController;
 use App\Http\Controllers\Backend\AdvertisementController;
@@ -24,7 +25,6 @@ use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\ProductImageGalleryController;
 use App\Http\Controllers\Backend\ProductVariantItemController;
 use App\Http\Controllers\Backend\ProfileController;
-use App\Http\Controllers\Backend\RazorpaySettingController;
 use App\Http\Controllers\Backend\SellerProductController;
 use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Backend\ShippingRuleController;
@@ -35,7 +35,6 @@ use App\Http\Controllers\Backend\SubscriberController;
 use App\Http\Controllers\Backend\TermsAndConditionController;
 use App\Http\Controllers\Backend\TransactionController;
 use App\Http\Controllers\Backend\VendorConditionController;
-use App\Http\Controllers\Backend\VendorController;
 use App\Http\Controllers\Backend\VendorListController;
 use App\Http\Controllers\Backend\VendorRequestController;
 use App\Http\Controllers\ProductVariantController;
@@ -174,6 +173,11 @@ Route::put('vendor-requests/{id}/change-status', [VendorRequestController::class
 /** Customer List Routes **/
 Route::get('customers', [CustomerListController::class, 'index'])->name('customers.index');
 Route::put('customers/change-status', [CustomerListController::class, 'changeStatus'])->name('customers.change-status');
+
+/** Admin List Routes **/
+Route::get('admin-list', [AdminListController::class, 'index'])->name('admin-list.index');
+Route::delete('admin-list/{id}', [AdminListController::class, 'destroy'])->name('admin-list.destroy');
+Route::put('admin-list/change-status', [AdminListController::class, 'changeStatus'])->name('admin-list.change-status');
 
 /** Manage Users Routes **/
 Route::get('manage-users', [ManageUserController::class, 'index'])->name('manage-users.index');
