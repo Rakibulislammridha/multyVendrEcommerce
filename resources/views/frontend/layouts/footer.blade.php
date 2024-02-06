@@ -53,8 +53,6 @@
                             @foreach ($footerGridThree as $link)
                             <li><a href="{{$link->url}}"><i class="fas fa-caret-right"></i> {{$link->name}}</a></li>
                             @endforeach
-
-                            
                         </ul>
                     </div>
                 </div>
