@@ -133,11 +133,11 @@
                                     <li><a href="brands.html">brands</a></li>
                                 </ul>
                             </li>
-                            <li><a href="track_order.html">track order</a></li>
+                            <li><a href="{{route('product-tracking.index')}}">track order</a></li>
                             <li><a href="daily_deals.html">daily deals</a></li>
                         </ul>
                         <ul class="wsus__menu_item wsus__menu_item_right">
-                            <li><a href={{route('contact')}}>contact</a></li>
+                            <li><a href="{{route('contact')}}">contact</a></li>
                             <li><a href="dsahboard.html">my account</a></li>
                             <li><a href="{{route('login')}}">login</a></li>
                         </ul>
@@ -244,7 +244,7 @@
                                     </div>
                                 </div>
                             </li>
-                            <li><a href="track_order.html">track order</a></li>
+                            <li><a href="{{route('product-tracking.index')}}">track order</a></li>
                             <li><a href="daily_deals.html">daily deals</a></li>
                         </ul>
                     </div>

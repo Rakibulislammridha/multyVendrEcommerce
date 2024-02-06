@@ -29,7 +29,7 @@
 
 
     <!--============================
-        PAYMENT PAGE START
+        ABOUT PAGE START
     ==============================-->
     <section id="wsus__cart_view">
         <div class="container">
@@ -46,6 +46,6 @@
         </div>
     </section>
     <!--============================
-        PAYMENT PAGE END
+        ABOUT PAGE END
     ==============================-->
 @endsection
