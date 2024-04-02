@@ -31,7 +31,7 @@ class CartController extends Controller
 
         return view('frontend.pages.cart-detail', compact('cartItems', 'cart_page_banner_section'));
     }
-    
+
     /** Add item to cart **/
     public function addToCart(Request $request)
     {
@@ -60,7 +60,7 @@ class CartController extends Controller
 
         /** Check discount **/
         $productPrice = 0;
-        
+
         if(checkDiscount($product)){
             $productPrice = $product->offer_price;
         } else {
@@ -88,14 +88,14 @@ class CartController extends Controller
     {
         $productId = Cart::get($request->rowId)->id;
         $product = Product::findOrFail($productId);
-        
+
         /** Check product quantity **/
         if ($product->qty == 0) {
             return response(['status' => 'error', 'message' => 'Product stock out!!']);
         } elseif ($product->qty < $request->qty) {
             return response(['status' => 'error', 'message' => 'Quantity not available in our stock!!']);
         }
-        
+
         Cart::update($request->rowId, $request->quantity);
 
         $productTotal = $this->getProductTotal($request->rowId);
@@ -150,7 +150,7 @@ class CartController extends Controller
     {
         return Cart::content();
     }
-    
+
     /** Remove sidebar cart **/
     public function removeSidebarProduct(Request $request)
     {
@@ -193,7 +193,7 @@ class CartController extends Controller
                 'discount' => $coupon->discount,
             ]);
         }
- 
+
         return response(['status' => 'success', 'message' => 'Coupon Added Successfully!!']);
     }
 
@@ -203,7 +203,7 @@ class CartController extends Controller
         if(Session::has('coupon')){
             $coupon = Session::get('coupon');
             $subTotal = getCartTotal();
-            
+
             if($coupon['discount_type'] === 'amount'){
                 $total = $subTotal - $coupon['discount'];
 

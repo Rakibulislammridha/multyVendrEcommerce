@@ -35,18 +35,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-xl-12">
-                    @if ($product_page_banner_section->banner_one->status == 1)
-                    <div class="wsus__pro_page_bammer">
-                        <img src="{{asset($product_page_banner_section->banner_one->banner_image)}}" alt="banner" class="img-fluid w-100">
-                        <div class="wsus__pro_page_bammer_text">
-                            <div class="wsus__pro_page_bammer_text_center">
-                                <p>up to <span>50% off</span></p>
-                                <h5>wemen's jeans Collection</h5>
-                                <h3>fashion for wemen's</h3>
-                                <a href="{{$product_page_banner_section->banner_one->banner_url}}" class="add_cart">Discover Now</a>
-                            </div>
-                        </div>
-                    </div>
+                    @if ($productpage_banner_section->banner_one->status == 1)
+                        <a href="{{$productpage_banner_section->banner_one->banner_url}}">
+                            <img class="img-gluid" src="{{asset($productpage_banner_section->banner_one->banner_image)}}" alt="">
+                        </a>
                     @endif
                 </div>
 
@@ -72,7 +64,7 @@
                                     <div class="accordion-body">
                                         <ul>
                                             @foreach ($categories as $category)
-                                            <li><a href="{{route('products.index', ['category' => $category->slug])}}">{{$category->name}}</a></li>                                                
+                                            <li><a href="{{route('products.index', ['category' => $category->slug])}}">{{$category->name}}</a></li>
                                             @endforeach
                                         </ul>
                                     </div>
@@ -115,7 +107,7 @@
                                     <div class="accordion-body">
                                         <ul>
                                             @foreach ($brands as $brand)
-                                            <li><a href="{{route('products.index', ['brand' => $brand->slug])}}">{{$brand->name}}</a></li>                                                
+                                            <li><a href="{{route('products.index', ['brand' => $brand->slug])}}">{{$brand->name}}</a></li>
                                             @endforeach
                                         </ul>
                                     </div>
@@ -150,7 +142,7 @@
                                 aria-labelledby="v-pills-home-tab">
                                 <div class="row">
                                 @foreach ($products as $product)
-                                
+
                     <div class="col-xl-4  col-sm-6">
                     <div class="wsus__product_item">
                         <span class="wsus__new">{{productType($product->product_type)}}</span>
@@ -197,7 +189,7 @@
                                 <p class="wsus__price">{{$settings->currency_icon}}{{$product->price}}</p>
                             @endif
 
-                            <form class="shopping-cart-form"> 
+                            <form class="shopping-cart-form">
                               <input type="hidden" name="product_id" value="{{$product->id}}">
                               @foreach ($product->variants as $variant)
                                     <select class="d-none" name="variants_items[]">
@@ -206,10 +198,10 @@
                                         @endforeach
                                     </select>
                               @endforeach
-                              <input type="hidden" min="1" name="qty" max="100" value="1" />                            
+                              <input type="hidden" min="1" name="qty" max="100" value="1" />
                               <button type="submit" class="add_cart" href="#">add to cart</button>
                             </form>
-                            
+
                         </div>
                     </div>
                     </div>
@@ -265,7 +257,7 @@
                                             @endif
                                             <p class="list_description">{{$product->short_description}}</p>
                                             <ul class="wsus__single_pro_icon">
-                                                <form class="shopping-cart-form"> 
+                                                <form class="shopping-cart-form">
                                                     <input type="hidden" name="product_id" value="{{$product->id}}">
                                                     @foreach ($product->variants as $variant)
                                                       <select class="d-none" name="variants_items[]">
@@ -274,7 +266,7 @@
                                                         @endforeach
                                                       </select>
                                                     @endforeach
-                                                    <input type="hidden" min="1" name="qty" max="100" value="1" />                            
+                                                    <input type="hidden" min="1" name="qty" max="100" value="1" />
                                                     <button type="submit" class="add_cart_two" href="#">add to cart</button>
                                                 </form>
                                                 <li><a href="#"><i class="far fa-heart"></i></a></li>
@@ -330,7 +322,7 @@
                                     @if ($product->video_link)
                                         <a class="venobox wsus__pro_det_video" data-autoplay="true" data-vbtype="video" href="{{$product->video_link}}">
                                             <i class="fas fa-play"></i>
-                                        </a>  
+                                        </a>
                                     @endif
 
                                     <div class="row modal_slider">
@@ -339,7 +331,7 @@
                                                 <img src="{{asset($product->thumb_image)}}" alt="product" class="img-fluid w-100">
                                             </div>
                                         </div>
-                                      
+
                                       @if (count($product->productImageGalleries) === 0)
                                           <div class="col-xl-12">
                                             <div class="modal_slider_img">
@@ -347,7 +339,7 @@
                                             </div>
                                           </div>
                                       @endif
-                                      
+
                                       @foreach ($product->productImageGalleries as $productImage)
                                         <div class="col-xl-12">
                                             <div class="modal_slider_img">
@@ -365,8 +357,8 @@
                                     <p class="wsus__stock_area"><span class="in_stock">in stock</span> (167 item)</p>
 
                                     @if (checkDiscount($product))
-                                        <h4>{{$settings->currency_icon}}{{$product->offer_price}} <del>{{$settings->currency_icon}}{{$product->price}}</del></h4>  
-                                    @else 
+                                        <h4>{{$settings->currency_icon}}{{$product->offer_price}} <del>{{$settings->currency_icon}}{{$product->price}}</del></h4>
+                                    @else
                                         <h4>{{$settings->currency_icon}}{{$product->price}}</h4>
                                     @endif
 
@@ -393,7 +385,7 @@
                                             <div class="row">
                                                 <input type="hidden" name="product_id" value="{{$product->id}}">
                                                 @foreach ($product->variants as $variant)
-                                                @if ($variant->status != 0)    
+                                                @if ($variant->status != 0)
                                                 <div class="col-xl-6 col-sm-6">
                                                     <h5 class="mb-2">{{$variant->name}}  :</h5>
                                                     <select class="select_2" name="variants_items[]">
@@ -439,7 +431,7 @@
         $(document).ready(function(){
             $('.list-view').on('click', function(){
                 let style = $(this).data('id');
-                
+
                 $.ajax({
                     method: 'GET',
                     url: "{{route('change-product-list-view')}}",

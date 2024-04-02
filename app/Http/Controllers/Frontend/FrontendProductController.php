@@ -18,7 +18,7 @@ class FrontendProductController extends Controller
     /** All Product **/
     public function productsIndex(Request $request)
     {
-        
+
         if($request->has('category')){
             $category = Category::where('slug', $request->category)->first();
             $products = Product::where([
@@ -28,10 +28,10 @@ class FrontendProductController extends Controller
             ])
             ->when($request->has('range'), function($query) use($request){
                 $price = explode(';', $request->range);
-                
+
                 $from = $price[0];
                 $to = $price[1];
-                
+
                 return $query->where('price', '>=', $from)->where('price', '<=', $to);
             })
             ->paginate(12);
@@ -70,7 +70,7 @@ class FrontendProductController extends Controller
         } elseif($request->has('brand')) {
 
             $brand = Brand::where('slug', $request->brand)->firstOrFail();
-            
+
             $products = Product::where([
                 'brand_id' => $brand->id,
                 'status' => 1,
@@ -88,10 +88,10 @@ class FrontendProductController extends Controller
         } elseif($request->has('search')) {
             $products = Product::where(['status' => 1, 'is_approved' => 1])
             ->where(function($query) use($request){
-                $query->where('name', 'like', '%'.$request->search.'%') 
+                $query->where('name', 'like', '%'.$request->search.'%')
                 ->orWhere('long_description', 'like', '%'.$request->search.'%')
                 ->orWhereHas('category', function($query) use($request){
-                    $query->where('name', 'like', '%'.$request->search.'%') 
+                    $query->where('name', 'like', '%'.$request->search.'%')
                     ->orWhere('long_description', 'like', '%'.$request->search.'%');
                 });
             })
@@ -105,18 +105,18 @@ class FrontendProductController extends Controller
         $brands = Brand::where(['status' => 1])->get();
 
         /** Banner **/
-        $product_page_banner_section = Advertisement::where('key', 'product_page_banner_section')->first();
-        $product_page_banner_section = json_decode($product_page_banner_section?->value);
-        
-        return view('frontend.pages.product', compact('products', 'categories', 'brands', 'product_page_banner_section'));
+        $productpage_banner_section = Advertisement::where('key', 'productpage_banner_section')->first();
+        $productpage_banner_section = json_decode($productpage_banner_section?->value);
+
+        return view('frontend.pages.product', compact('products', 'categories', 'brands', 'productpage_banner_section'));
     }
-    
+
     /** Show product detail page **/
     public function showProduct(string $slug)
     {
         $product = Product::with(['vendor', 'category', 'productImageGalleries', 'variants', 'brand'])->where('slug', $slug)->where('status', 1)->first();
         $reviews = Review::where('product_id', $product->id)->where('status', 1)->paginate(10);
-        
+
         return view('frontend.pages.product-detail', compact('product', 'reviews'));
     }
 

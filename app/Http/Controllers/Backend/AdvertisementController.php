@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class AdvertisementController extends Controller
 {
     use ImageUploadTrait;
-    
+
     public function index()
     {
         $home_page_banner_section_one = Advertisement::where('key', 'home_page_banner_section_one')->first();
@@ -25,15 +25,15 @@ class AdvertisementController extends Controller
         $home_page_banner_section_four = Advertisement::where('key', 'home_page_banner_section_four')->first();
         $home_page_banner_section_four = json_decode($home_page_banner_section_four?->value);
 
-        $product_page_banner_section = Advertisement::where('key', 'product_page_banner_section')->first();
-        $product_page_banner_section = json_decode($product_page_banner_section?->value);
+        $productpage_banner_section = Advertisement::where('key', 'productpage_banner_section')->first();
+        $productpage_banner_section = json_decode($productpage_banner_section?->value);
 
         $cart_page_banner_section = Advertisement::where('key', 'cart_page_banner_section')->first();
         $cart_page_banner_section = json_decode($cart_page_banner_section?->value);
-        
-        return view('admin.advertisement.index', compact('home_page_banner_section_one', 'home_page_banner_section_two', 'home_page_banner_section_three', 'home_page_banner_section_four', 'product_page_banner_section', 'cart_page_banner_section'));
+
+        return view('admin.advertisement.index', compact('home_page_banner_section_one', 'home_page_banner_section_two', 'home_page_banner_section_three', 'home_page_banner_section_four', 'productpage_banner_section', 'cart_page_banner_section'));
     }
-    
+
     public function homepageBannerSectionOne(Request $request)
     {
         $request->validate([
@@ -48,7 +48,7 @@ class AdvertisementController extends Controller
           'banner_one' => [
                 'banner_url' => $request->banner_url,
                 'status' => $request->status == 'on' ? 1 : 0,
-          ]  
+          ]
         ];
 
         if(!empty($imagePath)) {
@@ -72,7 +72,7 @@ class AdvertisementController extends Controller
 
     public function homepageBannerSectionTwo(Request $request)
     {
-        
+
         $request->validate([
             'banner_one_image' => ['image'],
             'banner_one_url' => ['required'],
@@ -244,7 +244,7 @@ class AdvertisementController extends Controller
         $value = json_encode($value);
 
         Advertisement::updateOrCreate([
-            'key' => 'product_page_banner_section'
+            'key' => 'productpage_banner_section'
         ], [
             'value' => $value,
         ]);
@@ -293,7 +293,7 @@ class AdvertisementController extends Controller
         $value = json_encode($value);
 
         Advertisement::updateOrCreate([
-            'key' => 'cart_page_banner_section'
+            'key' => 'productpage_banner_section'
         ], [
             'value' => $value,
         ]);

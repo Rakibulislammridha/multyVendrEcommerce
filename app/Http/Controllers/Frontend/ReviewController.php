@@ -13,7 +13,13 @@ use Illuminate\Support\Facades\Auth;
 class ReviewController extends Controller
 {
     use ImageUploadTrait;
-    
+
+
+    public function index(UserProductReviewsDataTable $dataTable)
+    {
+        return $dataTable->render('frontend.dashboard.review.index');
+    }
+
     public function create(Request $request)
     {
         $request->validate([
@@ -42,10 +48,10 @@ class ReviewController extends Controller
         $productReview->save();
 
         if(!empty($imagePaths)) {
-            
+
             foreach($imagePaths as $path) {
                 $reviewGallery = new ProductReviewGallery();
-                
+
                 $reviewGallery->review_id = $productReview->id;
                 $reviewGallery->image = $path;
                 $reviewGallery->save();
@@ -55,10 +61,5 @@ class ReviewController extends Controller
         toastr('Review Added Successfully!!', 'success', 'Success');
 
         return redirect()->back();
-    }
-
-    public function index(UserProductReviewsDataTable $dataTable)
-    {
-        return $dataTable->render('frontend.dashboard.review.index');
     }
 }

@@ -15,7 +15,7 @@
 
                 @foreach ($flashSaleItem as $item)
                 @php
-                    $product = \App\Models\Product::with('reviews')->find($item->product_id)
+                    $product = \App\Models\Product::with('reviews')->find($item->product_id);
                 @endphp
                 <div class="col-xl-3 col-sm-6 col-lg-4">
                     <div class="wsus__product_item">
@@ -40,7 +40,7 @@
                         </ul>
                         <div class="wsus__product_details">
                             <a class="wsus__category" href="#">{{$product->category->name}} </a>
-                            
+
                             <p class="wsus__pro_rating">
 
                                 @php
@@ -64,7 +64,7 @@
                             @else
                                 <p class="wsus__price">{{$settings->currency_icon}} {{$product->price}}</p>
                             @endif
-                            <form class="shopping-cart-form"> 
+                            <form class="shopping-cart-form">
                               <input type="hidden" name="product_id" value="{{$product->id}}">
                               @foreach ($product->variants as $variant)
                                     <select class="d-none" name="variants_items[]">
@@ -73,7 +73,7 @@
                                         @endforeach
                                     </select>
                               @endforeach
-                              <input type="hidden" min="1" name="qty" max="100" value="1" />                            
+                              <input type="hidden" min="1" name="qty" max="100" value="1" />
                               <button type="submit" class="add_cart" href="#">add to cart</button>
                             </form>
                         </div>
@@ -89,7 +89,7 @@
     PRODUCT MODAL VIEW START
 ===========================-->
 @foreach ($flashSaleItem as $item)
-    
+
 @php
     $product = \App\Models\Product::with('reviews')->find($item->product_id)
 @endphp
@@ -107,7 +107,7 @@
                                     @if ($product->video_link)
                                         <a class="venobox wsus__pro_det_video" data-autoplay="true" data-vbtype="video" href="{{$product->video_link}}">
                                             <i class="fas fa-play"></i>
-                                        </a>  
+                                        </a>
                                     @endif
 
                                     <div class="row modal_slider">
@@ -116,7 +116,7 @@
                                                 <img src="{{asset($product->thumb_image)}}" alt="product" class="img-fluid w-100">
                                             </div>
                                         </div>
-                                      
+
                                       @if (count($product->productImageGalleries) === 0)
                                           <div class="col-xl-12">
                                             <div class="modal_slider_img">
@@ -124,7 +124,7 @@
                                             </div>
                                           </div>
                                       @endif
-                                      
+
                                       @foreach ($product->productImageGalleries as $productImage)
                                         <div class="col-xl-12">
                                             <div class="modal_slider_img">
@@ -142,8 +142,8 @@
                                     <p class="wsus__stock_area"><span class="in_stock">in stock</span> (167 item)</p>
 
                                     @if (checkDiscount($product))
-                                        <h4>{{$settings->currency_icon}}{{$product->offer_price}} <del>{{$settings->currency_icon}}{{$product->price}}</del></h4>  
-                                    @else 
+                                        <h4>{{$settings->currency_icon}}{{$product->offer_price}} <del>{{$settings->currency_icon}}{{$product->price}}</del></h4>
+                                    @else
                                         <h4>{{$settings->currency_icon}}{{$product->price}}</h4>
                                     @endif
 
@@ -170,7 +170,7 @@
                                             <div class="row">
                                                 <input type="hidden" name="product_id" value="{{$product->id}}">
                                                 @foreach ($product->variants as $variant)
-                                                @if ($variant->status != 0)    
+                                                @if ($variant->status != 0)
                                                 <div class="col-xl-6 col-sm-6">
                                                     <h5 class="mb-2">{{$variant->name}}  :</h5>
                                                     <select class="select_2" name="variants_items[]">
@@ -209,7 +209,7 @@
         </div>
 </section>
 @endforeach
-    
+
 <!--==========================
     PRODUCT MODAL VIEW END
 ===========================-->

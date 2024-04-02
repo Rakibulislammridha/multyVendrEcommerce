@@ -183,7 +183,7 @@
                                     @if ($product->video_link)
                                         <a class="venobox wsus__pro_det_video" data-autoplay="true" data-vbtype="video" href="{{$product->video_link}}">
                                             <i class="fas fa-play"></i>
-                                        </a>  
+                                        </a>
                                     @endif
                                     <ul class='exzoom_img_ul'>
                                         <li><img class="zoom ing-fluid w-100" src="{{asset($product->thumb_image)}}" alt="product"></li>
@@ -217,8 +217,8 @@
 
 
                             @if (checkDiscount($product))
-                                <h4>{{$settings->currency_icon}}{{$product->offer_price}} <del>{{$settings->currency_icon}}{{$product->price}}</del></h4>  
-                            @else 
+                                <h4>{{$settings->currency_icon}}{{$product->offer_price}} <del>{{$settings->currency_icon}}{{$product->price}}</del></h4>
+                            @else
                                 <h4>{{$settings->currency_icon}}{{$product->price}}</h4>
                             @endif
 
@@ -245,7 +245,7 @@
         <div class="row">
         <input type="hidden" name="product_id" value="{{$product->id}}">
         @foreach ($product->variants as $variant)
-        @if ($variant->status != 0)  
+        @if ($variant->status != 0)
         <div class="col-xl-6 col-sm-6">
             <h5 class="mb-2">{{$variant->name}}  :</h5>
             <select class="select_2" name="variants_items[]">
@@ -349,7 +349,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <div class="tab-pane fade" id="pills-contact" role="tabpanel"
                                     aria-labelledby="pills-contact-tab">
                                     <div class="wsus__pro_det_vendor">
@@ -404,17 +404,17 @@
     @foreach ($reviews as $review)
     <div class="wsus__main_comment">
         <div class="wsus__comment_img">
-            <img src="{{asset($review->user->image)}}" alt="user" class="img-fluid w-100">
+            <img src="{{asset(@$review->user->image)}}" alt="user" class="img-fluid w-100">
         </div>
         <div class="wsus__comment_text reply">
-            <h6>{{$review->user->name}} <span>{{$review->rating}} <i class="fas fa-star"></i></span></h6>
-            <span>{{date('d M Y', strtotime($review->created_at))}}</span>
+            <h6>{{@$review->user->name}} <span>{{@$review->rating}} <i class="fas fa-star"></i></span></h6>
+            <span>{{date('d M Y', strtotime(@$review->created_at))}}</span>
             <p>
-                {{$review->review}}
+                {{@$review->review}}
             </p>
             <ul class="">
-                @if(count($review->productReviewGalleries) > 0) 
-                @foreach ($review->productReviewGalleries as $image)
+                @if(count(@$review->productReviewGalleries) > 0)
+                @foreach (@$review->productReviewGalleries as $image)
                 <li><img src="{{asset($image->image)}}" alt="product" class="img-fluid"></li>
                 @endforeach
                 @endif
@@ -429,7 +429,7 @@
         @endif
     </div>
 
-    
+
 </div>
 </div>
 <div class="col-xl-4 col-lg-5 mt-4 mt-lg-0">
@@ -438,23 +438,22 @@
     $orders = \App\Models\Order::where(['user_id' => auth()->user()->id, 'order_status' => 'delivered'])->get();
 
     foreach ($orders as $order) {
-        // @dd($order->orderProducts()->where('product_id', $product->id)->get());
         $existItem = $order->orderProducts()->where('product_id', @$product->id)->first();
         if ($existItem) {
             $isBrought = true;
         }
     }
 @endphp
-@if ($isBrought === true)    
+@if ($isBrought === true)
 <div class="wsus__post_comment rev_mar" id="sticky_sidebar3">
     <h4>write a Review</h4>
     <form action="{{route('user.review.create')}}" enctype="multipart/form-data" method="POST">
         @csrf
-        
+
         <p class="rating">
             <span>select your rating : </span>
         </p>
-        
+
         <div class="row">
 
             <div class="col-xl-12 mb-4">
@@ -510,176 +509,6 @@
     </section>
     <!--============================
         PRODUCT DETAILS END
-    ==============================-->
-
-
-    <!--============================
-        RELATED PRODUCT START
-    ==============================-->
-    {{-- <section id="wsus__flash_sell">
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-12">
-                    <div class="wsus__section_header">
-                        <h3>Related Products</h3>
-                        <a class="see_btn" href="#">see more <i class="fas fa-caret-right"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="row flash_sell_slider">
-                <div class="col-xl-3 col-sm-6 col-lg-4">
-                    <div class="wsus__product_item">
-                        <span class="wsus__new">New</span>
-                        <span class="wsus__minus">-20%</span>
-                        <a class="wsus__pro_link" href="product_details.html">
-                            <img src="images/pro3.jpg" alt="product" class="img-fluid w-100 img_1" />
-                            <img src="images/pro3_3.jpg" alt="product" class="img-fluid w-100 img_2" />
-                        </a>
-                        <ul class="wsus__single_pro_icon">
-                            <li><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal2"><i
-                                        class="far fa-eye"></i></a></li>
-                            <li><a href="#"><i class="far fa-heart"></i></a></li>
-                            <li><a href="#"><i class="far fa-random"></i></a>
-                        </ul>
-                        <div class="wsus__product_details">
-                            <a class="wsus__category" href="#">Electronics </a>
-                            <p class="wsus__pro_rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
-                                <span>(133 review)</span>
-                            </p>
-                            <a class="wsus__pro_name" href="#">hp 24" FHD monitore</a>
-                            <p class="wsus__price">$159 <del>$200</del></p>
-                            <a class="add_cart" href="#">add to cart</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-sm-6 col-lg-4">
-                    <div class="wsus__product_item">
-                        <span class="wsus__new">New</span>
-                        <a class="wsus__pro_link" href="product_details.html">
-                            <img src="images/pro4.jpg" alt="product" class="img-fluid w-100 img_1" />
-                            <img src="images/pro4_4.jpg" alt="product" class="img-fluid w-100 img_2" />
-                        </a>
-                        <ul class="wsus__single_pro_icon">
-                            <li><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal2"><i
-                                        class="far fa-eye"></i></a></li>
-                            <li><a href="#"><i class="far fa-heart"></i></a></li>
-                            <li><a href="#"><i class="far fa-random"></i></a>
-                        </ul>
-                        <div class="wsus__product_details">
-                            <a class="wsus__category" href="#">fashion </a>
-                            <p class="wsus__pro_rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
-                                <span>(17 review)</span>
-                            </p>
-                            <a class="wsus__pro_name" href="#">men's casual fashion watch</a>
-                            <p class="wsus__price">$159 <del>$200</del></p>
-                            <a class="add_cart" href="#">add to cart</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-sm-6 col-lg-4">
-                    <div class="wsus__product_item">
-                        <span class="wsus__minus">-20%</span>
-                        <a class="wsus__pro_link" href="product_details.html">
-                            <img src="images/pro9.jpg" alt="product" class="img-fluid w-100 img_1" />
-                            <img src="images/pro9_9.jpg" alt="product" class="img-fluid w-100 img_2" />
-                        </a>
-                        <ul class="wsus__single_pro_icon">
-                            <li><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal2"><i
-                                        class="far fa-eye"></i></a></li>
-                            <li><a href="#"><i class="far fa-heart"></i></a></li>
-                            <li><a href="#"><i class="far fa-random"></i></a>
-                        </ul>
-                        <div class="wsus__product_details">
-                            <a class="wsus__category" href="#">fashion </a>
-                            <p class="wsus__pro_rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
-                                <span>(120 review)</span>
-                            </p>
-                            <a class="wsus__pro_name" href="#">men's fashion sholder bag</a>
-                            <p class="wsus__price">$159 <del>$200</del></p>
-                            <a class="add_cart" href="#">add to cart</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-sm-6 col-lg-4">
-                    <div class="wsus__product_item">
-                        <span class="wsus__new">New</span>
-                        <span class="wsus__minus">-20%</span>
-                        <a class="wsus__pro_link" href="product_details.html">
-                            <img src="images/pro2.jpg" alt="product" class="img-fluid w-100 img_1" />
-                            <img src="images/pro2_2.jpg" alt="product" class="img-fluid w-100 img_2" />
-                        </a>
-                        <ul class="wsus__single_pro_icon">
-                            <li><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal2"><i
-                                        class="far fa-eye"></i></a></li>
-                            <li><a href="#"><i class="far fa-heart"></i></a></li>
-                            <li><a href="#"><i class="far fa-random"></i></a>
-                        </ul>
-                        <div class="wsus__product_details">
-                            <a class="wsus__category" href="#">fashion </a>
-                            <p class="wsus__pro_rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
-                                <span>(72 review)</span>
-                            </p>
-                            <a class="wsus__pro_name" href="#">men's casual shoes</a>
-                            <p class="wsus__price">$159 <del>$200</del></p>
-                            <a class="add_cart" href="#">add to cart</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-sm-6 col-lg-4">
-                    <div class="wsus__product_item">
-                        <span class="wsus__minus">-20%</span>
-                        <a class="wsus__pro_link" href="product_details.html">
-                            <img src="images/pro4.jpg" alt="product" class="img-fluid w-100 img_1" />
-                            <img src="images/pro4_4.jpg" alt="product" class="img-fluid w-100 img_2" />
-                        </a>
-                        <ul class="wsus__single_pro_icon">
-                            <li><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal2"><i
-                                        class="far fa-eye"></i></a></li>
-                            <li><a href="#"><i class="far fa-heart"></i></a></li>
-                            <li><a href="#"><i class="far fa-random"></i></a>
-                        </ul>
-                        <div class="wsus__product_details">
-                            <a class="wsus__category" href="#">fashion </a>
-                            <p class="wsus__pro_rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
-                                <span>(17 review)</span>
-                            </p>
-                            <a class="wsus__pro_name" href="#">men's casual fashion watch</a>
-                            <p class="wsus__price">$159 <del>$200</del></p>
-                            <a class="add_cart" href="#">add to cart</a>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section> --}}
-    <!--============================
-        RELATED PRODUCT END
     ==============================-->
 
 @endsection

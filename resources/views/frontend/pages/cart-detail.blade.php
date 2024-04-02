@@ -189,7 +189,7 @@
             let quantity = parseInt(input.val()) + 1;
             let rowId = input.data('rowid');
             input.val(quantity);
-            
+
             $.ajax({
                 url: "{{route('cart.update-quantity')}}",
                 method: 'POST',
@@ -226,7 +226,7 @@
             }
 
             input.val(quantity);
-            
+
             $.ajax({
                 url: "{{route('cart.update-quantity')}}",
                 method: 'POST',
@@ -280,7 +280,7 @@
                         console.log(error)
                     }
                 })
-          
+
             }
         });
         })

@@ -2,23 +2,16 @@
     $popularCategories = json_decode($popularCategories->value, true);
     // @dd($popularCategories);
 @endphp
-    
+
     <section id="wsus__monthly_top" class="wsus__monthly_top_2">
         <div class="container">
             <div class="row">
                 <div class="col-xl-12 col-lg-12">
-                    @if ($home_page_banner_section_one->banner_one->status == 1)
+                    @if ($homepage_secion_banner_one->banner_one->status == 1)
                     <div class="wsus__monthly_top_banner">
-                        <div class="wsus__monthly_top_banner_img">
-                            <img src="{{asset($home_page_banner_section_one->banner_one->banner_image)}}" alt="img" class="img-fluid w-100">
-                            <span></span>
-                        </div>
-                        <div class="wsus__monthly_top_banner_text">
-                            <h4>Black Friday Sale</h4>
-                            <h3>Up To <span>30% Off</span></h3>
-                            <H6>Everything</H6>
-                            <a class="shop_btn" href="{{route('flash-sale')}}">shop now</a>
-                        </div>
+                        <a href="{{$homepage_secion_banner_one->banner_one->banner_url}}">
+                            <img class="img-fluid" src="{{asset($homepage_secion_banner_one->banner_one->banner_image)}}" alt="">
+                        </a>
                     </div>
                     @endif
                 </div>
@@ -44,7 +37,7 @@
                                     }
                                     $lastKey = [$key => $category];
                                 };
-                                
+
                                 if(array_keys($lastKey)[0] === 'category'){
                                     $category = \App\Models\Category::find($lastKey['category']);
                                     $products[] = \App\Models\Product::with('reviews')->where('category_id', $category->id)->orderBy('id', 'DESC')->take(12)->get();
@@ -106,4 +99,3 @@
             </div>
         </div>
     </section>
-    

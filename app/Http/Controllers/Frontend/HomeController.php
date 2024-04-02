@@ -31,19 +31,19 @@ class HomeController extends Controller
         $categorySliderSectionThree = HomePageSetting::where('key', 'product_slider_section_three')->first();
 
         /** Banners **/
-        $home_page_banner_section_one = Advertisement::where('key', 'home_page_banner_section_one')->first();
-        $home_page_banner_section_one = json_decode($home_page_banner_section_one->value);
+        $homepage_secion_banner_one = Advertisement::where('key', 'homepage_secion_banner_one')->first();
+        $homepage_secion_banner_one = json_decode($homepage_secion_banner_one?->value);
 
-        $home_page_banner_section_two = Advertisement::where('key', 'home_page_banner_section_two')->first();
+        $home_page_banner_section_two = Advertisement::where('key', 'homepage_secion_banner_two')->first();
         $home_page_banner_section_two = json_decode($home_page_banner_section_two?->value);
 
-        $home_page_banner_section_three = Advertisement::where('key', 'home_page_banner_section_three')->first();
+        $home_page_banner_section_three = Advertisement::where('key', 'homepage_secion_banner_three')->first();
         $home_page_banner_section_three = json_decode($home_page_banner_section_three?->value);
 
-        $home_page_banner_section_four = Advertisement::where('key', 'home_page_banner_section_four')->first();
+        $home_page_banner_section_four = Advertisement::where('key', 'homepage_secion_banner_four')->first();
         $home_page_banner_section_four = json_decode($home_page_banner_section_four?->value);
-        
-        return view('frontend.home.home', 
+
+        return view('frontend.home.home',
         compact(
             'sliders',
             'flashSaleDate',
@@ -54,7 +54,7 @@ class HomeController extends Controller
             'categorySliderSectionOne',
             'categorySliderSectionTwo',
             'categorySliderSectionThree',
-            'home_page_banner_section_one',
+            'homepage_secion_banner_one',
             'home_page_banner_section_two',
             'home_page_banner_section_three',
             'home_page_banner_section_four',
@@ -85,12 +85,12 @@ class HomeController extends Controller
     public function vendorProductsPage(string $id)
     {
         $products = Product::where(['status' => 1, 'is_approved' => 1, 'vendor_id' => $id])->orderBy('id', 'DESC')->paginate(12);
-        
+
 
         $categories = Category::where(['status' => 1])->get();
         $brands = Brand::where(['status' => 1])->get();
         $vendor = Vendor::findOrFail($id);
-        
+
         return view('frontend.pages.vendor-products', compact('products', 'categories', 'brands', 'vendor'));
     }
 }

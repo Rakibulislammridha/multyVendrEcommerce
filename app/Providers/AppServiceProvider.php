@@ -26,7 +26,6 @@ class AppServiceProvider extends ServiceProvider
         Paginator::useBootstrap();
 
         $generalSetting = GeneralSetting::first();
-        
         /** Set time zone **/
         Config::set('app.timezone', $generalSetting->time_zone);
 
