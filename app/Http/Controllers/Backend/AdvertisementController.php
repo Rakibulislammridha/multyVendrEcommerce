@@ -28,6 +28,8 @@ class AdvertisementController extends Controller
         $productpage_banner_section = Advertisement::where('key', 'productpage_banner_section')->first();
         $productpage_banner_section = json_decode($productpage_banner_section?->value);
 
+        // start work 03-04-24
+
         $cart_page_banner_section = Advertisement::where('key', 'cart_page_banner_section')->first();
         $cart_page_banner_section = json_decode($cart_page_banner_section?->value);
 
