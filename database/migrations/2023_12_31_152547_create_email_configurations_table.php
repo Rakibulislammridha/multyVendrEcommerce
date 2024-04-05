@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('email_configuration_settings', function (Blueprint $table) {
+        Schema::create('email_configurations', function (Blueprint $table) {
             $table->id();
             $table->string('email');
             $table->string('host');
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('email_configuration_settings');
+        Schema::dropIfExists('email_configurations');
     }
 };

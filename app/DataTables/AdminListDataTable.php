@@ -21,7 +21,7 @@ class AdminListDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('action', function ($query) {
-                if($query->id !== 5){
+                if($query->id !== 1){
                     $deleteBtn = "<a href='" . route('admin.admin-list.destroy', $query->id) . "' class='btn btn-danger ml-2 delete-item'><i class='far fa-trash-alt'></i></a>";
     
                     return $deleteBtn;
@@ -32,7 +32,7 @@ class AdminListDataTable extends DataTable
                 }
             })
             ->addColumn('status', function ($query) {
-                if($query->id !== 5) {
+                if($query->id !== 1) {
                     if ($query->status == 'active') {
                         $button = '<label class="custom-switch mt-2">
                      <input type="checkbox" checked name="custom-switch-checkbox" data-id="' . $query->id . '" class="custom-switch-input change-status">
@@ -69,7 +69,7 @@ class AdminListDataTable extends DataTable
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     //->dom('Bfrtip')
-                    ->orderBy(1)
+                    ->orderBy(0)
                     ->selectStyleSingle()
                     ->buttons([
                         Button::make('excel'),

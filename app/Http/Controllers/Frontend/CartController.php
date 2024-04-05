@@ -26,10 +26,10 @@ class CartController extends Controller
             return redirect()->route('home');
         }
 
-        $cart_page_banner_section = Advertisement::where('key', 'cart_page_banner_section')->first();
-        $cart_page_banner_section = json_decode($cart_page_banner_section?->value);
+        $cartpage_banner_section = Advertisement::where('key', 'cartpage_banner_section')->first();
+        $cartpage_banner_section = json_decode($cartpage_banner_section?->value);
 
-        return view('frontend.pages.cart-detail', compact('cartItems', 'cart_page_banner_section'));
+        return view('frontend.pages.cart-detail', compact('cartItems', 'cartpage_banner_section'));
     }
 
     /** Add item to cart **/

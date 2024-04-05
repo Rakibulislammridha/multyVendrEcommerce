@@ -41,7 +41,7 @@ class BlogController extends Controller
             'category' => ['required',],
             'description' => ['required',],
             'seo_title' => ['nullable', 'max:200'],
-            'seo_description' => ['nullable', 'max:200'],
+            'seo_description' => ['nullable', 'max:500'],
         ]);
 
         $imagePath = $this->uploadImage($request, 'image', 'uploads');

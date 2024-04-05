@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Models\EmailConfigurationSetting;
+use App\Models\EmailConfiguration;
 use App\Models\GeneralSetting;
 use Illuminate\Http\Request;
 
@@ -13,11 +13,11 @@ class SettingController extends Controller
     {
         $generalSettings = GeneralSetting::first();
 
-        $emailSettings = EmailConfigurationSetting::first();
-        
+        $emailSettings = EmailConfiguration::first();
+
         return view('admin.setting.index', compact('generalSettings', 'emailSettings'));
     }
-    
+
     public function generalSettingUpdate(Request $request)
     {
         $request->validate([
@@ -62,7 +62,7 @@ class SettingController extends Controller
             'encryption' => ['required', 'max:200'],
         ]);
 
-        EmailConfigurationSetting::updateOrCreate(
+        EmailConfiguration::updateOrCreate(
             [
                 'id' => 1
             ],

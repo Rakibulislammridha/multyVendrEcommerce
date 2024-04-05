@@ -1,15 +1,15 @@
-<?php 
+<?php
 
 namespace App\Helper;
 
-use App\Models\EmailConfigurationSetting;
+use App\Models\EmailConfiguration;
 
-class MailHelper 
+class MailHelper
 {
     public static function setMailConfig()
     {
-        $emailConfig = EmailConfigurationSetting::first();
-        
+        $emailConfig = EmailConfiguration::first();
+
         $config = [
             'transport' => 'smtp',
             'url' => env('MAIL_URL'),
@@ -19,7 +19,7 @@ class MailHelper
             'username' => $emailConfig->username,
             'password' => $emailConfig->password,
             'timeout' => null,
-            'local_domain' => env('MAIL_EHLO_DOMAIN'),  
+            'local_domain' => env('MAIL_EHLO_DOMAIN'),
         ];
 
         config(['mail.mailers.smtp' => $config]);

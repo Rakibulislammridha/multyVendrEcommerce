@@ -149,8 +149,8 @@
             ])}}">
               <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Users</span></a>
               <ul class="dropdown-menu">
-                <li class="{{setActive(['admin.vendors.index'])}}"><a class="nav-link" href="{{route('admin.vendors.index')}}">Vendors</a></li>
-                <li class="{{setActive(['admin.customers.index'])}}"><a class="nav-link" href="{{route('admin.customers.index')}}">Customer</a></li>
+                <li class="{{setActive(['admin.vendors.index'])}}"><a class="nav-link" href="{{route('admin.vendors.index')}}">Vendors List</a></li>
+                <li class="{{setActive(['admin.customers.index'])}}"><a class="nav-link" href="{{route('admin.customers.index')}}">Customer List</a></li>
                 <li class="{{setActive(['admin.vendor-requests.index'])}}"><a class="nav-link" href="{{route('admin.vendor-requests.index')}}">Pedning Vendors</a></li>
                 <li class="{{setActive(['admin.admin-list.index'])}}"><a class="nav-link" href="{{route('admin.admin-list.index')}}">Admin List</a></li>
                 <li class="{{setActive(['admin.manage-users.index'])}}"><a class="nav-link" href="{{route('admin.manage-users.index')}}">Manage Users</a></li>

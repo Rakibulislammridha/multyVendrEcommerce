@@ -31,6 +31,7 @@
                     <label>Google Map URL</label>
                     <input type="text" value="{{@$generalSettings->map}}" name="map" class="form-control">
                 </div>
+                <hr>
                 <div class="form-group">
                     <label>Default Currency Name</label>
                     <select name="currency_name" class="form-control select2">

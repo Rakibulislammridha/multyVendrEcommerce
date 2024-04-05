@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->string('invoice_id');
+            $table->string('invocie_id');
             $table->integer('user_id');
             $table->double('sub_total');
             $table->double('amount');
@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('payment_method');
             $table->integer('payment_status');
             $table->text('order_address');
-            $table->text('shipping_method');
+            $table->text('shpping_method');
             $table->text('coupon');
             $table->string('order_status');
             $table->timestamps();

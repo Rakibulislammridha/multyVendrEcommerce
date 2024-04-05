@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class EmailConfigurationSetting extends Model
+class EmailConfiguration extends Model
 {
     use HasFactory;
 
@@ -15,6 +15,6 @@ class EmailConfigurationSetting extends Model
         'username',
         'password',
         'port',
-        'encryption',  
+        'encryption',
     ];
 }

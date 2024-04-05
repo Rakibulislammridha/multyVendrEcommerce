@@ -114,7 +114,7 @@ class OrderDataTable extends DataTable
         return [
 
             Column::make('id'),
-            Column::make('invoice_id'),
+            Column::make('invocie_id'),
             Column::make('customer'),
             Column::make('date'),
             Column::make('product_qty'),

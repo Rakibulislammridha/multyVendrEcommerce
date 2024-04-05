@@ -63,7 +63,7 @@
                             @else
                                 <p class="wsus__price">{{$settings->currency_icon}} {{$product->price}}</p>
                             @endif
-                            <form class="shopping-cart-form"> 
+                            <form class="shopping-cart-form">
                               <input type="hidden" name="product_id" value="{{$product->id}}">
                               @foreach ($product->variants as $variant)
                                     <select class="d-none" name="variants_items[]">
@@ -72,7 +72,7 @@
                                         @endforeach
                                     </select>
                               @endforeach
-                              <input type="hidden" min="1" name="qty" max="100" value="1" />                            
+                              <input type="hidden" min="1" name="qty" max="100" value="1" />
                               <button type="submit" class="add_cart" href="#">add to cart</button>
                             </form>
                         </div>
@@ -80,7 +80,7 @@
                     </div>
                     @endforeach
                     @endforeach
-                    
+
                 </div>
             </div>
 
@@ -88,10 +88,10 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-xl-6 col-lg-6">
-                            @if ($home_page_banner_section_three->banner_one->status == 1)
+                            @if ($homepage_secion_banner_three->banner_one->status == 1)
                             <div class="wsus__single_banner_content banner_1">
                                 <div class="wsus__single_banner_img">
-                                    <img src="{{asset($home_page_banner_section_three->banner_one->banner_image)}}" alt="banner" class="img-fluid w-100">
+                                    <img src="{{asset($homepage_secion_banner_three->banner_one->banner_image)}}" alt="banner" class="img-fluid w-100">
                                 </div>
                                 <div class="wsus__single_banner_text">
                                     <h6>sell on <span>50% off</span></h6>
@@ -104,31 +104,23 @@
                         <div class="col-xl-6 col-lg-6">
                             <div class="row">
                                 <div class="col-12">
-                                    @if ($home_page_banner_section_three->banner_two->status == 1)
-                                    <div class="wsus__single_banner_content single_banner_2">
-                                        <div class="wsus__single_banner_img">
-                                            <img src="{{asset($home_page_banner_section_three->banner_two->banner_image)}}" alt="banner" class="img-fluid w-100">
+                                    @if ($homepage_secion_banner_three->banner_two->status == 1)
+                                        <div class="wsus__single_banner_content single_banner_2">
+                                            <a href="{{ $homepage_secion_banner_three->banner_two->banner_url }}">
+                                                <img class="img-gluid"
+                                                    src="{{ asset($homepage_secion_banner_three->banner_two->banner_image) }}"
+                                                    alt="">
+                                            </a>
                                         </div>
-                                        <div class="wsus__single_banner_text">
-                                            <h6>New Collection</h6>
-                                            <h3>kid's fashion</h3>
-                                            <a class="shop_btn" href="{{route('flash-sale')}}">shop now</a>
-                                        </div>
-                                    </div>
                                     @endif
                                 </div>
                                 <div class="col-12 mt-lg-4">
-                                    @if ($home_page_banner_section_three->banner_three->status == 1)
-                                    <div class="wsus__single_banner_content">
-                                        <div class="wsus__single_banner_img">
-                                            <img src="{{asset($home_page_banner_section_three->banner_three->banner_image)}}" alt="banner" class="img-fluid w-100">
-                                        </div>
-                                        <div class="wsus__single_banner_text">
-                                            <h6>sell on <span>22% off</span></h6>
-                                            <h3>smart watch <br> collection</h3>
-                                            <a class="shop_btn" href="{{route('flash-sale')}}">shop now</a>
-                                        </div>
-                                    </div>
+                                    @if ($homepage_secion_banner_three->banner_three->status == 1)
+                                        <a href="{{ $homepage_secion_banner_three->banner_three->banner_url }}">
+                                            <img class="img-fluid"
+                                                src="{{ asset($homepage_secion_banner_three->banner_three->banner_image) }}"
+                                                alt="">
+                                        </a>
                                     @endif
                                 </div>
                             </div>
@@ -154,7 +146,7 @@
                                     @if ($product->video_link)
                                         <a class="venobox wsus__pro_det_video" data-autoplay="true" data-vbtype="video" href="{{$product->video_link}}">
                                             <i class="fas fa-play"></i>
-                                        </a>  
+                                        </a>
                                     @endif
 
                                     <div class="row modal_slider">
@@ -163,7 +155,7 @@
                                                 <img src="{{asset($product->thumb_image)}}" alt="product" class="img-fluid w-100">
                                             </div>
                                         </div>
-                                      
+
                                       @if (count($product->productImageGalleries) === 0)
                                           <div class="col-xl-12">
                                             <div class="modal_slider_img">
@@ -171,7 +163,7 @@
                                             </div>
                                           </div>
                                       @endif
-                                      
+
                                       @foreach ($product->productImageGalleries as $productImage)
                                         <div class="col-xl-12">
                                             <div class="modal_slider_img">
@@ -189,8 +181,8 @@
                                     <p class="wsus__stock_area"><span class="in_stock">in stock</span> (167 item)</p>
 
                                     @if (checkDiscount($product))
-                                        <h4>{{$settings->currency_icon}}{{$product->offer_price}} <del>{{$settings->currency_icon}}{{$product->price}}</del></h4>  
-                                    @else 
+                                        <h4>{{$settings->currency_icon}}{{$product->offer_price}} <del>{{$settings->currency_icon}}{{$product->price}}</del></h4>
+                                    @else
                                         <h4>{{$settings->currency_icon}}{{$product->price}}</h4>
                                     @endif
 
@@ -217,7 +209,7 @@
                                             <div class="row">
                                                 <input type="hidden" name="product_id" value="{{$product->id}}">
                                                 @foreach ($product->variants as $variant)
-                                                @if ($variant->status != 0)    
+                                                @if ($variant->status != 0)
                                                 <div class="col-xl-6 col-sm-6">
                                                     <h5 class="mb-2">{{$variant->name}}  :</h5>
                                                     <select class="select_2" name="variants_items[]">

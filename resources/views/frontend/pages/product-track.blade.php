@@ -74,7 +74,7 @@
                                         <div class="col-xl-3 col-sm-6 col-lg-3">
                                             <div class="wsus__track_header_single border_none">
                                                 <h5>tracking:</h5>
-                                                <p>{{@$order->invoice_id}}</p>
+                                                <p>{{@$order->invocie_id}}</p>
                                             </div>
                                         </div>
                                     </div>

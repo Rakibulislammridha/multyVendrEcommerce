@@ -15,7 +15,7 @@
                     <div class="col-12">
                         <h4>contact us</h4>
                         <ul>
-                            <li><a href="#">home</a></li>
+                            <li><a href={{ route('home') }}>home</a></li>
                             <li><a href="#">contact us</a></li>
                         </ul>
                     </div>
@@ -128,7 +128,7 @@
                     url: "{{route('handle-contact-form')}}",
                     data: data,
                     beforeSend: function() {
-                        $('#form-submit').text('sending..');
+                        $('#form-submit').text('sending...');
                         $('#form-submit').attr('disabled', true);
                     },
                     success: function(data) {

@@ -32,7 +32,7 @@ class FlashSaleController extends Controller
         toastr('Updated Successfully!!', 'success', 'success');
 
         return redirect()->back();
-        
+
     }
 
     public function addProduct(Request $request)
@@ -47,7 +47,7 @@ class FlashSaleController extends Controller
 
         $flashSaleDate = FlashSale::first();
         $flashSaleItem = new FlashSaleItem();
-        
+
         $flashSaleItem->product_id = $request->product;
         $flashSaleItem->flash_sale_id = $flashSaleDate->id;
         $flashSaleItem->show_at_home = $request->show_at_home;

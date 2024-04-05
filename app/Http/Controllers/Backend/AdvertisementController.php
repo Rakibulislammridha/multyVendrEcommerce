@@ -13,27 +13,27 @@ class AdvertisementController extends Controller
 
     public function index()
     {
-        $home_page_banner_section_one = Advertisement::where('key', 'home_page_banner_section_one')->first();
-        $home_page_banner_section_one = json_decode($home_page_banner_section_one->value);
+        $homepage_secion_banner_one = Advertisement::where('key', 'homepage_secion_banner_one')->first();
+        $homepage_secion_banner_one = json_decode($homepage_secion_banner_one->value);
 
-        $home_page_banner_section_two = Advertisement::where('key', 'home_page_banner_section_two')->first();
-        $home_page_banner_section_two = json_decode($home_page_banner_section_two?->value);
+        $homepage_secion_banner_two = Advertisement::where('key', 'homepage_secion_banner_two')->first();
+        $homepage_secion_banner_two = json_decode($homepage_secion_banner_two?->value);
 
-        $home_page_banner_section_three = Advertisement::where('key', 'home_page_banner_section_three')->first();
-        $home_page_banner_section_three = json_decode($home_page_banner_section_three?->value);
+        $homepage_secion_banner_three = Advertisement::where('key', 'homepage_secion_banner_three')->first();
+        $homepage_secion_banner_three = json_decode($homepage_secion_banner_three?->value);
 
-        $home_page_banner_section_four = Advertisement::where('key', 'home_page_banner_section_four')->first();
-        $home_page_banner_section_four = json_decode($home_page_banner_section_four?->value);
+        $homepage_secion_banner_four = Advertisement::where('key', 'homepage_secion_banner_four')->first();
+        $homepage_secion_banner_four = json_decode($homepage_secion_banner_four?->value);
 
         $productpage_banner_section = Advertisement::where('key', 'productpage_banner_section')->first();
         $productpage_banner_section = json_decode($productpage_banner_section?->value);
 
         // start work 03-04-24
 
-        $cart_page_banner_section = Advertisement::where('key', 'cart_page_banner_section')->first();
-        $cart_page_banner_section = json_decode($cart_page_banner_section?->value);
+        $cartpage_banner_section = Advertisement::where('key', 'cartpage_banner_section')->first();
+        $cartpage_banner_section = json_decode($cartpage_banner_section?->value);
 
-        return view('admin.advertisement.index', compact('home_page_banner_section_one', 'home_page_banner_section_two', 'home_page_banner_section_three', 'home_page_banner_section_four', 'productpage_banner_section', 'cart_page_banner_section'));
+        return view('admin.advertisement.index', compact('homepage_secion_banner_one', 'homepage_secion_banner_two', 'homepage_secion_banner_three', 'homepage_secion_banner_four', 'productpage_banner_section', 'cartpage_banner_section'));
     }
 
     public function homepageBannerSectionOne(Request $request)
@@ -62,7 +62,7 @@ class AdvertisementController extends Controller
         $value = json_encode($value);
 
      Advertisement::updateOrCreate([
-        'key' => 'home_page_banner_section_one'
+        'key' => 'homepage_secion_banner_one'
     ],[
         'value' => $value,
     ]);
@@ -112,7 +112,7 @@ class AdvertisementController extends Controller
         $value = json_encode($value);
 
         Advertisement::updateOrCreate([
-            'key' => 'home_page_banner_section_two'
+            'key' => 'homepage_secion_banner_two'
         ], [
             'value' => $value,
         ]);
@@ -174,7 +174,7 @@ class AdvertisementController extends Controller
         $value = json_encode($value);
 
         Advertisement::updateOrCreate([
-            'key' => 'home_page_banner_section_three'
+            'key' => 'homepage_secion_banner_three'
         ], [
             'value' => $value,
         ]);
@@ -210,7 +210,7 @@ class AdvertisementController extends Controller
         $value = json_encode($value);
 
         Advertisement::updateOrCreate([
-            'key' => 'home_page_banner_section_four'
+            'key' => 'homepage_secion_banner_four'
         ], [
             'value' => $value,
         ]);

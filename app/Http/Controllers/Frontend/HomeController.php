@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Advertisement;
+use App\Models\Blog;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\ChildCategory;
@@ -34,14 +35,16 @@ class HomeController extends Controller
         $homepage_secion_banner_one = Advertisement::where('key', 'homepage_secion_banner_one')->first();
         $homepage_secion_banner_one = json_decode($homepage_secion_banner_one?->value);
 
-        $home_page_banner_section_two = Advertisement::where('key', 'homepage_secion_banner_two')->first();
-        $home_page_banner_section_two = json_decode($home_page_banner_section_two?->value);
+        $homepage_secion_banner_two = Advertisement::where('key', 'homepage_secion_banner_two')->first();
+        $homepage_secion_banner_two = json_decode($homepage_secion_banner_two?->value);
 
-        $home_page_banner_section_three = Advertisement::where('key', 'homepage_secion_banner_three')->first();
-        $home_page_banner_section_three = json_decode($home_page_banner_section_three?->value);
+        $homepage_secion_banner_three = Advertisement::where('key', 'homepage_secion_banner_three')->first();
+        $homepage_secion_banner_three = json_decode($homepage_secion_banner_three?->value);
 
-        $home_page_banner_section_four = Advertisement::where('key', 'homepage_secion_banner_four')->first();
-        $home_page_banner_section_four = json_decode($home_page_banner_section_four?->value);
+        $homepage_secion_banner_four = Advertisement::where('key', 'homepage_secion_banner_four')->first();
+        $homepage_secion_banner_four = json_decode($homepage_secion_banner_four?->value);
+
+        $recentBlogs = Blog::with(['category', 'user'])->where('status', 1)->orderBy('id', 'DESC')->take(8)->get();
 
         return view('frontend.home.home',
         compact(
@@ -51,13 +54,17 @@ class HomeController extends Controller
             'popularCategories',
             'brands',
             'typeBaseProducts',
+
             'categorySliderSectionOne',
             'categorySliderSectionTwo',
             'categorySliderSectionThree',
+
             'homepage_secion_banner_one',
-            'home_page_banner_section_two',
-            'home_page_banner_section_three',
-            'home_page_banner_section_four',
+            'homepage_secion_banner_two',
+            'homepage_secion_banner_three',
+            'homepage_secion_banner_four',
+
+            'recentBlogs',
         ));
     }
 

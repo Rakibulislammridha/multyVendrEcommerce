@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Backend\AdminController;
+use App\Http\Controllers\Frontend\BlogController;
 use App\Http\Controllers\Frontend\CheckOutController;
 use App\Http\Controllers\Frontend\PaymentController;
 use App\Http\Controllers\Frontend\CartController;
@@ -86,6 +87,9 @@ Route::post('contact', [PageController::class, 'handleContactForm'])->name('hand
 
 /** Product Track Routes **/
 Route::get('product-tracking', [ProductTrackController::class, 'index'])->name('product-tracking.index');
+
+/** Product Track Routes **/
+Route::get('blog-details/{slug}', [BlogController::class, 'blogDetails'])->name('blog-details');
 
 /** Authenticated routes **/
 Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 'user.'], function(){

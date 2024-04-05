@@ -112,12 +112,26 @@ class FrontendProductController extends Controller
     }
 
     /** Show product detail page **/
+    // public function showProduct(string $slug)
+    // {
+    //     $product = Product::with(['vendor', 'category', 'productImageGalleries', 'variants', 'brand'])->where('slug', $slug)->where('status', 1)->first();
+    //     $reviews = Review::where('product_id', $product?->id)->where('status', 1)->paginate(10);
+        
+    //     return view('frontend.pages.product-detail', compact('product', 'reviews'));
+    // }
+
     public function showProduct(string $slug)
     {
         $product = Product::with(['vendor', 'category', 'productImageGalleries', 'variants', 'brand'])->where('slug', $slug)->where('status', 1)->first();
-        $reviews = Review::where('product_id', $product->id)->where('status', 1)->paginate(10);
-
-        return view('frontend.pages.product-detail', compact('product', 'reviews'));
+        
+        if ($product) {
+            $reviews = Review::where('product_id', $product->id)->where('status', 1)->paginate(10);
+            
+            return view('frontend.pages.product-detail', compact('product', 'reviews'));
+        } else {
+            // Handle case when product is not found, maybe redirect or show an error message
+            abort(404); // For example, you could return a 404 error page
+        }
     }
 
     /** Change List View **/

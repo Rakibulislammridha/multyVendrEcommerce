@@ -15,7 +15,7 @@
                     <div class="col-12">
                         <h4>About</h4>
                         <ul>
-                            <li><a href="route('home')">home</a></li>
+                            <li><a href={{ route('home') }}>home</a></li>
                             <li><a href="javascript:;">About</a></li>
                         </ul>
                     </div>
@@ -37,7 +37,6 @@
                 <div class="row">
                     <div class="card">
                         <div class="cadr-body p-5">
-                        <h2 class="">About Sazao</h2>
                             {!! @$about->content !!}
                         </div>
                     </div>
