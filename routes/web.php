@@ -88,8 +88,9 @@ Route::post('contact', [PageController::class, 'handleContactForm'])->name('hand
 /** Product Track Routes **/
 Route::get('product-tracking', [ProductTrackController::class, 'index'])->name('product-tracking.index');
 
-/** Product Track Routes **/
+/** Blog Routes **/
 Route::get('blog-details/{slug}', [BlogController::class, 'blogDetails'])->name('blog-details');
+Route::get('blog', [BlogController::class, 'blog'])->name('blog');
 
 /** Authenticated routes **/
 Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 'user.'], function(){
@@ -137,4 +138,7 @@ Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 
 
     /** Razorpay Routes **/
     // Route::post('razorpay/payment', [PaymentController::class, 'payWithRazorpay'])->name('razorpay.payment');
+
+    /** Blog Comments Routes **/
+    Route::post('blog-comment', [BlogController::class, 'comment'])->name('blog-comment');
 });
