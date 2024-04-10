@@ -1,6 +1,6 @@
 @php
     $address = json_decode($order->order_address);
-    $shipping = json_decode($order->shipping_method);
+    $shipping = json_decode($order->shpping_method);
     $coupon = json_decode($order->coupon);
     
     // @dd($address);
@@ -56,7 +56,7 @@
                             </div>
                             <div class="col-xl-4 col-md-4">
                                 <div class="wsus__invoice_single text-md-end">
-                                    <h5>Order Id: #{{@$order->invoice_id}}</h5>
+                                    <h5>Order Id: #{{@$order->invocie_id}}</h5>
                                     <h6>Order Status: {{config('order_status.order_status_admin')[@$order->order_status]['status']}}</h6>
                                     <p>Payment Method: {{@$order->payment_method}}</p>
                                     <p>Payment Status: {{@$order->payment_status}}</p>
@@ -127,10 +127,10 @@
                     </div>
                 </div>
                 <div class="wsus__invoice_footer">
-                    <p><span>Sub Total:</span> {{@$settings->currency_icon}}{{@$order->sub_total}} </p>
-                    <p><span>Shipping Fee (+):</span> {{@$settings->currency_icon}}{{@$shipping->cost}} </p>
-                    <p><span>Coupon (-):</span> {{@$settings->currency_icon}}{{@$coupon->discount}} </p>
-                    <p><span>Total Amount :</span> {{@$settings->currency_icon}}{{@$order->amount}} </p>
+                    <p><span>Sub Total:</span> {{ @$settings->currency_icon }} {{@$order->sub_total}}</p>
+                    <p><span>Shipping Fee(+):</span>{{ @$settings->currency_icon }} {{@$shipping->cost}} </p>
+                    <p><span>Coupon(-):</span>{{ @$settings->currency_icon }} {{@$coupon->discount ? $coupon->discount : 0}}</p>
+                    <p><span>Total Amount :</span>{{ @$settings->currency_icon }} {{@$order->amount}}</p>
                 </div>
             </div>
         </div>
